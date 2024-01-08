@@ -5,14 +5,43 @@
 #!markdown
 
 ---
-# Basics of C#
+# **Basics of C#**
 Printing, variables, operators, data types, strings, comments
 
 #!markdown
 
+## What is C#
+- Was developed by Microsoft
+- C# is an object-oriented programming language
+- 
 Welcome to .NET Interactive and your first C# notebook. C# is an programming language that you can use to make many different types of programs including websites, games, and mobile applications. Let's explore some of the basics of using C# in this notebook and write your first .NET code!
 
 Just click the run icon in a code cell to execute it, or hit the key command.
+
+#!markdown
+
+## Input and Output
+- Input: `Console.ReadLine()`   or `Console.ReadKey()` or `Console.Read()`
+
+- Output: `Console.WriteLine()` or `Console.Write()`
+
+#!markdown
+
+### `Console.Write()` and `Console.WriteLine()`
+- `Console.Write()` writes to the console without a new line
+
+- `Console.WriteLine()` writes to the console with a new line
+
+#!csharp
+
+Console.Write("Hello World");
+Console.WriteLine("Hello World");
+Console.Write("Hello World");
+Console.WriteLine("Hello World");
+
+#!markdown
+
+### `Console.ReadLine()`, `Console.Read()`, and `Console.ReadKey()`
 
 #!markdown
 
@@ -26,10 +55,6 @@ Just click the run icon in a code cell to execute it, or hit the key command.
 #!csharp
 
 Console.WriteLine("Nno Umu Madu");
-
-#!markdown
-
-### Variables: They are like C++
 
 #!markdown
 
@@ -51,7 +76,9 @@ Literals:
     - char x = 'a';
 - `string` : text
     string x = "hello";
-- `bool` : boolean (true or false)  //bool x = true;
+- `bool` : boolean (true or false)
+    - bool x = true;
+    - bool y = false;
 
 #!csharp
 
@@ -69,6 +96,16 @@ Console.WriteLine(aFriend);
 
 string aFriend = "Maira";
 Console.WriteLine(aFriend);
+
+#!markdown
+
+#### Assigning of same type
+you can use commas to assign multiple variables at once.
+
+#!csharp
+
+int x = 10, y = 5, z = 20;
+Console.WriteLine(x + y + z);
 
 #!markdown
 
@@ -192,7 +229,11 @@ and this is still commented out
 
 #!markdown
 
-## Built-In Variable Types
+### Variables: They are like C++
+
+#!markdown
+
+#### Built-In Variable Types
 
 Variables can be declared of various **types** and then interacted with. The simplest types in C# are called [Built-In Types](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/built-in-types)
 
@@ -201,14 +242,14 @@ We define variables using in-memory storage for a type by preceeding the name of
 #!csharp
 
 int i = 10;
-                        double j = 5.5d;
-      char c = 'C';
+double j = 5.5d;
+char c = 'C';
 
 c
 
 #!markdown
 
-### The var keyword
+#### The var keyword
 
 Sometimes, its a little cumbersome to declare a variable, assign a value, and have to specify the type before it. C# has built-in type inference and you can use the var keyword to force the compiler to detect the actual type being created and set the variable to the type of the value being assigned.
 
@@ -226,7 +267,7 @@ c
 
 You can ONLY use the var keyword when creating and assigning the variable in one statement.
 
-### Real Literals
+#### Real Literals
 
 We can declare double, float, and decimal types with simple numeric notation, but we need to force the literal numbers we assign to be the correct type to match the variable type expected.
 
@@ -261,7 +302,9 @@ display(valueD);
 
 #!markdown
 
-### Operators
+### Operators: Same as C++
+
+#!markdown
 
 Now that we have some basic types and can create variables, it would sure be nice to have them interact with each other. [Operators](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/) can be used to interact with our variables.
 
@@ -272,23 +315,15 @@ Let's start by declaring two variables, apples and oranges and interact with the
 var apples = 100m;   // Decimal value
 var oranges = 30m;   // Decimal value
 
-#!markdown
-
-Basic arithmetic operators and assignment are available:
-
-#!csharp
+//display() is only available in Jupyter Notebook and Polyglot, not in C#
 
 display(apples + oranges);
 
-#!csharp
+display("I have " + apples + " apples and " + oranges + " oranges.");
 
 display(apples - oranges);
 
-#!csharp
-
 display(apples * oranges);
-
-#!csharp
 
 display(apples += 10);
 
@@ -298,37 +333,21 @@ display(apples *= 10);
 
 display(apples /= 3m);
 
-#!markdown
+display(apples > oranges);
 
-C# makes the inequality operators available as well, and a test for equality using ==
+display(apples >= oranges);
 
-#!csharp
+display(apples < oranges);
 
-display(apples > oranges)
-
-#!csharp
-
-display(apples >= oranges)
-
-#!csharp
-
-display(apples < oranges)
-
-#!csharp
-
-display(apples <= oranges)
-
-#!csharp
+display(apples <= oranges);
 
 display(apples == oranges)
-
-#!csharp
 
 display(apples != oranges)
 
 #!markdown
 
-## Loops and Conditionals
+### Loops and Conditionals
 
 Common to every programming language are the concepts of loops or repeated execution of the same block of code and conditional execution of code. These features are typically manifest as the following statements:
 
@@ -338,7 +357,9 @@ Common to every programming language are the concepts of loops or repeated execu
 - if
 - switch or case
 
-### Conditionals
+#!markdown
+
+#### Conditionals
 
 There are two statement-level conditional interactions in C#: if and switch...case statements. If statements can be combined with any number of else if statements and a single else statement to route code flow and interactions across branches of code. [(Link to official docs)](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/if-else)
 
@@ -487,7 +508,7 @@ if (seconds % 2 == 0 || MultipleOfThree()) {
 
 #!markdown
 
-### Switch Statements
+#### Switch Statements
 
 Sometimes we have a LOT of conditions and branches that we want to evaluate and potentially traverse in our code. The [switch statement](https://docs.microsoft.com/dotnet/csharp/language-reference/keywords/switch) allows you to configure using the switch, case, break, and default statements the various branches you could potentially step down.
 
@@ -560,7 +581,7 @@ switch (dayOfTheWeek) {
 
 #!markdown
 
-### For Loops
+#### For Loops
 
 [For loops](https://docs.microsoft.com/dotnet/csharp/language-reference/keywords/for) are a looping statement that allow you to repeat a block of code depending on a counter expression. The for statement takes the general form:
 
@@ -600,7 +621,7 @@ for (var counter=5; counter>0; counter-= 3) {
 
 #!markdown
 
-### Break Statement in For loops
+#### Break Statement in For loops
 
 If you need to exit a loop and continue processing, you can execute the break statement.
 
@@ -617,7 +638,7 @@ for (var counter=1; counter>0; counter++) {
 
 #!markdown
 
-### For-Each Loops
+#### For-Each Loops
 
 We haven't covered collections yet, but you can run a for loop across all of the items in the collection (like an array) and interact with each of those items directly. The [foreach statement](https://docs.microsoft.com/dotnet/csharp/language-reference/keywords/foreach-in) will run the contents of the loop and pass into your varaible each element in the collection, one at a time.
 
@@ -643,7 +664,7 @@ for (var nameCounter = 0; nameCounter < arrNames.Length; nameCounter++) {
 
 #!markdown
 
-### While and Do Loops
+#### While and Do Loops
 
 `while` and `do` loops have almost identical structure and perform the same task. You provide a test condition over which the contents of the loop should continue to be executed. The [while loop](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/while) executes the test FIRST before the loop statements, and the [do loop](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/do) executes the test AFTER the statements.
 
@@ -669,14 +690,59 @@ do {
 
 #!markdown
 
-## Summary
+### Summary
 
 There is so much more to cover about C# and interacting with the .NET frameworks.  You can learn more through our [Get Started with .NET series](https://dotnet.microsoft.com/learn)
 
 #!markdown
 
 ---
-# OOP in C#
+# **Custom code**
+
+#!markdown
+
+## Print function
+This function displays a string on the screen
+
+#!csharp
+
+//This function displays a message on the screen.
+
+void Print(string message) {
+    Console.WriteLine(message);
+}
+
+Print("Hello, World!");  // Test with a simple string
+Print("");  // Test with an empty string
+Print(null);  // Test with null
+Print("12345");  // Test with a numeric string
+Print(new string('a', 1000));  // Test with a long string
+
+#!markdown
+
+## Boilerplate code
+- using System; is a using directive that allows you to use types in the System namespace without having to specify the full namespace.
+- namespace MyApplication defines a namespace for your application. This is a way to group your code and avoid name collisions with other code.
+- class Program defines a class named Program. This is where your application's code will go.
+- static void Main(string[] args) defines the Main method, which is the entry point for your application. When your application starts, this is the first method that gets called.
+- Console.WriteLine("Hello, World!"); is a line of code that prints "Hello, World!" to the console. This is just a placeholder, and you can replace it with whatever code you want - your application to run.
+
+#!csharp
+
+using System;
+
+namespace MyApplication {
+    class Program{
+        static void Main(string[] args){
+            Console.WriteLine("Hello, World!");
+        }
+    }
+}
+
+#!markdown
+
+---
+# **OOP in C#**
 
 #!markdown
 
@@ -686,49 +752,49 @@ Here, we create objects that contain both data and methods.
 #!markdown
 
 ---
-# Classes & Objects
+# **Classes & Objects**
 
 #!markdown
 
 ---
-# Inheritance
+# **Inheritance**
 
 #!markdown
 
 ---
-# Polymorphism
+# **Polymorphism**
 
 #!markdown
 
 ---
-# Abstraction
+# **Abstraction**
 
 #!markdown
 
 ---
-# Interface
+# **Interface**
 
 #!markdown
 
 ---
-# Enums
+# **Enums**
 
 #!markdown
 
 ---
-# Exceptions
+# **Exceptions**
 
 #!markdown
 
 ---
-# Files
+# **Files**
 
 #!markdown
 
 ---
-# Classes & Objects
+# **Classes & Objects**
 
 #!markdown
 
 ---
-# End
+# **End**
