@@ -29,3 +29,9 @@ Textbook
 - Get feedback from AI, and classmates first before meeting him
   - He avoids meeting students
 - Talk with Dan about acc for exams
+
+
+- C# classes are contained in one file like javascript, and
+- Uses .cs
+- You can create partial classes
+- One class that is composed of multiple .cs files

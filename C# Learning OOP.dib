@@ -372,10 +372,8 @@ display("Current seconds: " + seconds);
 
 // A simple test, are the number of seconds a multiple of 2?
 if (    seconds % 2 == 0     ) {
-    
     // Do this thing when seconds are even
     display("seconds are even");
-    
 }
 
 #!markdown
