@@ -2,6 +2,7 @@
 
 - [W3Schools Exercises](https://www.w3schools.com/exercises/index.php)
 - [The Ultimate C# Cheat Sheet - Master C# Programming 👨‍💻 (christian-schou.dk)](https://blog.christian-schou.dk/csharp-cheat-sheet/)
+- [C# Object-Oriented Programming (OOP) Cheat Sheet - DEV Community](https://dev.to/caiocesar/c-object-oriented-programming-oop-cheat-sheet-5bkf)
 
 Textbook
 
@@ -14,23 +15,22 @@ Textbook
 - He deals with Data Structures the same
 - No attendance requirement
 - Don't miss any class
-
-
 - Ask Ralph to make inferences on him using his syllabus
 - Exams
+
   - March 8th - Wednesday before Spring break
   - Written paper exams
     - Do practice with paper and pencil code
   - Can't miss and exam
 - Fix and Resubmit must be turned in or else 0
 - Don't share your assignments like you did in Data structures. You may need to keep the Github rep private
+
   - But you should still discuss and help others
 - 
 - Get feedback from AI, and classmates first before meeting him
+
   - He avoids meeting students
 - Talk with Dan about acc for exams
-
-
 - C# classes are contained in one file like javascript, and
 - Uses .cs
 - You can create partial classes
