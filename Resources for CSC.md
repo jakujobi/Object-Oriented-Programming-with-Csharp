@@ -3,6 +3,7 @@
 - [W3Schools Exercises](https://www.w3schools.com/exercises/index.php)
 - [The Ultimate C# Cheat Sheet - Master C# Programming 👨‍💻 (christian-schou.dk)](https://blog.christian-schou.dk/csharp-cheat-sheet/)
 - [C# Object-Oriented Programming (OOP) Cheat Sheet - DEV Community](https://dev.to/caiocesar/c-object-oriented-programming-oop-cheat-sheet-5bkf)
+- https://github.com/markjprice/cs12dotnet8
 
 Textbook
 
