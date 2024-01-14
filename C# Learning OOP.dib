@@ -790,7 +790,58 @@ Here, we create objects that contain both data and methods.
 #!markdown
 
 ---
-# **Classes & Objects**
+# **Classes Notes**
+
+#!markdown
+
+## Creating a project
+- The name of the solution should be the same as the project
+  - Make a project template
+Steps
+- Create a folder with project name
+  - ```Test1```
+- Navigate to inside the folder
+  - ```Test1>```
+- Check template list
+  - ```dotnet new list```
+- Create solution
+  - ```dotnet new sln -n Test1``` or ```dotnet new sln --name Test1``` or ```dotnet new sln```
+- Create console app
+  - ```dotnet new console -o Test1```
+  - or ```dotnet new console -o Test1 -f net8.0``` to use .NET 8.0 specifically
+- Add solution
+  - ```dotnet sln add Test1.sln```
+
+- 
+---
+- Create a new project
+  - ```dotnet new console```
+- Build project
+  - ```dotnet build```
+- Run project
+  - ```dotnet run``` or ```dotnet run -p Test1```
+
+#!markdown
+
+- Don't tamper with the obj folder
+- make sure the name you are using is the same as the project name and solution name
+- Expect things in program.cs to be already in a main method
+  - So no need to write a main method boilerplate code
+- Methods have capital names
+  - That is why we use 'Main' instead of 'main'
+- He will build and run the project from the solutions folder
+
+#!csharp
+
+### Code to make a project
+
+#!csharp
+
+mkdir Test1 && \
+cd Test1 && \
+dotnet new sln -n Test1 && \
+dotnet new console -o Test1 && \
+dotnet sln add Test1/Test1.csproj
 
 #!markdown
 
