@@ -26,20 +26,19 @@ def CreateCommandText(ProjectName):
     return commands
 
 # Create the text file
-def CreateTextFile(commands):
+def CreateTextFile(commands, project_name):
     # Open the text file in write mode
     # Write the commands to the file
     # Close the file
     # Print a message indicating that the file was created successfully.
-    with open('create_project.txt', 'w') as file:
+    with open(f'{project_name} - Copy into Terminal to create.txt', 'w') as file:
         file.write(commands)
-    print("Text file created successfully.")
-
+    print ("Creating text file...")
 
 # Check if the text file was created successfully
 # Then print a message indicating that the text file was created successfully.
-def CheckTextFile():
-    if os.path.exists('create_project.txt'):
+def CheckTextFile(project_name):
+    if os.path.exists(f'{project_name} - Copy into Terminal to create.txt'):
         SuccessfulInstruction()
     else:
         FailedInstruction()
@@ -58,9 +57,9 @@ def FailedInstruction():
 # This is the main program that calls the other functions
 def Main():
     Greeting()
-    GetProjectName()
-    commands = CreateCommandText(ProjectName)
-    CreateTextFile(commands)
+    project_name = GetProjectName()
+    commands = CreateCommandText(project_name)
+    CheckTextFile(project_name)
 
 # Call the main function
 Main()
