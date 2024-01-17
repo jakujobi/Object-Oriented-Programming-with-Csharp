@@ -7,9 +7,8 @@ def Greeting():
     print("Welcome to the Project Creator!")
     print("This program will ask you for the name of a new .NET project,")
     print("and then generate a text file with the commands to create that project.")
-
-# Make a variable string called ProjectName
-#ProjectName = ""
+    print("________________________________________________________________________")
+    print(" ")
 
 def GetProjectName():
     global ProjectName
@@ -41,9 +40,20 @@ def CreateTextFile(commands):
 # Then print a message indicating that the text file was created successfully.
 def CheckTextFile():
     if os.path.exists('create_project.txt'):
-        print("Text file created successfully.")
+        SuccessfulInstruction()
     else:
-        print("Text file not created.")
+        FailedInstruction()
+
+def SuccessfulInstruction:
+    print("Text file created successfully.")
+    print(" ")
+
+def FailedInstruction():
+    print("Failed to create text file.")
+    print("Please try again.")
+    print(" ")
+    print("________________________________________________________________________")
+    print(" ")
 
 # This is the main program that calls the other functions
 def Main():
