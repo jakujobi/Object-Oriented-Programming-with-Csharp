@@ -15,7 +15,7 @@ dotnet sln add {project_name}/{project_name}.csproj
 """
 
 # Open the shell script file in write mode
-with open('create_project.sh', 'w') as file:
+with open('create_project.txt', 'w') as file:
     # Write the commands to the file
     file.write(commands)
 
