@@ -1,3 +1,5 @@
+# C# Automated Rapid Project Setup (CARPS)
+
 # Python script to create a shell script file
 # that will create a new project with a solution file
 # Python script to create a text file with the commands to create a new project
