@@ -1,0 +1,7 @@
+
+    mkdir Akujobi1 && \
+    cd Akujobi1 && \
+    dotnet new sln -n Akujobi1 && \
+    dotnet new console -o Akujobi1 && \
+    dotnet sln add Akujobi1/Akujobi1.csproj
+    
