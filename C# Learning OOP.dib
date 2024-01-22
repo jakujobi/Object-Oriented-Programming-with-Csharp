@@ -754,6 +754,30 @@ Here, we create objects that contain both data and methods.
 
 #!markdown
 
+All apps process data
+- We pick appropriate types to determine how much space variable takes in memory and how fast it can be processed
+
+Naming things
+- CamelCase
+- PascalCase
+- Snake_case
+
+## Storing text
+- Literal string
+- Verbatim string
+- Raw string
+  - Characters are enclosed in three or more double-qute characters
+- Interpolated string
+  - Characters are enclosed in curly braces
+  - Can include variable
+  - Need to use $ sign in front
+
+### Dynamic Type
+- The type is determined at runtime
+- Can be changed
+
+#!markdown
+
 ---
 # **Inheritance**
 
