@@ -14,9 +14,7 @@ Printing, variables, operators, data types, strings, comments
 - Was developed by Microsoft
 - C# is an object-oriented programming language
 - 
-Welcome to .NET Interactive and your first C# notebook. C# is an programming language that you can use to make many different types of programs including websites, games, and mobile applications. Let's explore some of the basics of using C# in this notebook and write your first .NET code!
-
-Just click the run icon in a code cell to execute it, or hit the key command.
+Welcome to .NET Interactive and your first C# notebook. C# is an programming language that you can use to make many different types of programs including websites, games, and mobile applications. Let's explore some of the basics of using C# in this notebook and write your first .NET code
 
 #!markdown
 
@@ -109,7 +107,7 @@ Console.WriteLine(x + y + z);
 
 #!markdown
 
-### Strings
+## Strings
 
 #!markdown
 
@@ -229,7 +227,7 @@ and this is still commented out
 
 #!markdown
 
-### Variables: They are like C++
+## Variables: They are like C++
 
 #!markdown
 
@@ -347,7 +345,7 @@ display(apples != oranges)
 
 #!markdown
 
-### Loops and Conditionals
+## Loops and Conditionals
 
 Common to every programming language are the concepts of loops or repeated execution of the same block of code and conditional execution of code. These features are typically manifest as the following statements:
 
@@ -580,26 +578,11 @@ switch (dayOfTheWeek) {
 #!markdown
 
 #### For Loops
-
-[For loops](https://docs.microsoft.com/dotnet/csharp/language-reference/keywords/for) are a looping statement that allow you to repeat a block of code depending on a counter expression. The for statement takes the general form:
-
+Similar to C++
 `for (Initializer; Condition; Iterator) { CODE TO EXECUTE }`
 
-The Initializer typically initializes a counter variable to be worked with.
-
-The Condition is a test to be executed at the beginning of each attempt to execute the code block. If the Condition evaluates to true then the code block will be executed.
-
-The optional Iterator code executes after each loop and typically increments the initialized variable , stepping towards the end value.
-
-Typical use for the for statement looks similar to the following, where 5 is an arbitrary number to stop counting at.
-
-```
 for (var i=0; i<5; i++) {
-
 }
-```
-
-In practice it works like this:
 
 #!csharp
 
@@ -646,7 +629,7 @@ Let's look at an example:
 
 var arrNames = new string[] { "Fritz", "Scott", "Maria", "Jayme", "Maira", "James"};
 
-foreach (var name in arrNames) {
+foreach (var name in arrNames) {4
     display(name);
 }
 
@@ -819,6 +802,9 @@ Naming things
 #!markdown
 
 ## Creating a project
+
+#!markdown
+
 - The name of the solution should be the same as the project
   - Make a project template
 Steps
@@ -855,17 +841,21 @@ Steps
   - That is why we use 'Main' instead of 'main'
 - He will build and run the project from the solutions folder
 
-#!csharp
+#!markdown
 
 ### Code to make a project
 
-#!csharp
+#!pwsh
 
 mkdir Test1 && \
 cd Test1 && \
 dotnet new sln -n Test1 && \
 dotnet new console -o Test1 && \
 dotnet sln add Test1/Test1.csproj
+
+#!markdown
+
+string? means that it can be nullable, or its okay if thereis no value
 
 #!markdown
 
