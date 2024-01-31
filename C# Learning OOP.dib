@@ -10,24 +10,17 @@ Printing, variables, operators, data types, strings, comments
 
 #!markdown
 
-## What is C#
-- Was developed by Microsoft
-- C# is an object-oriented programming language
-- 
-Welcome to .NET Interactive and your first C# notebook. C# is an programming language that you can use to make many different types of programs including websites, games, and mobile applications. Let's explore some of the basics of using C# in this notebook and write your first .NET code
-
-#!markdown
-
 ## Input and Output
-- Input: `Console.ReadLine()`   or `Console.ReadKey()` or `Console.Read()`
+- Input: 
+- `Console.ReadLine()` reads from the console and returns a string
+  - It stops when enter key is pressed
+- `Console.Read()` returnes the ASCII value of the key pressed
+  - It returns it as a string
+  - If there are no more characters to be read, it returns -1
+- `Console.ReadKey()` returns information about the key pressed
 
-- Output: `Console.WriteLine()` or `Console.Write()`
-
-#!markdown
-
-### `Console.Write()` and `Console.WriteLine()`
+Output:
 - `Console.Write()` writes to the console without a new line
-
 - `Console.WriteLine()` writes to the console with a new line
 
 #!csharp
@@ -37,22 +30,17 @@ Console.WriteLine("Hello World");
 Console.Write("Hello World");
 Console.WriteLine("Hello World");
 
-#!markdown
+#!csharp
 
-### `Console.ReadLine()`, `Console.Read()`, and `Console.ReadKey()`
+Console.Write("Enter your name: ");
+string greet = Console.ReadLine();
+Console.WriteLine($"{greet}");
+
+int character = Console.Read();
 
 #!markdown
 
 ## Basics
-
-#!markdown
-
-### Printing:
-`Console.WriteLine();` is used to print in c#
-
-#!csharp
-
-Console.WriteLine("Nno Umu Madu");
 
 #!markdown
 
@@ -107,20 +95,18 @@ Console.WriteLine(x + y + z);
 
 #!markdown
 
-## Strings
+---
+# **Strings**
 
 #!markdown
 
-#### [String Interpolation](https://docs.microsoft.com/dotnet/csharp/language-reference/tokens/interpolated)
+### [String Interpolation](https://docs.microsoft.com/dotnet/csharp/language-reference/tokens/interpolated)
 
 Use `$` to use multiple variables and expressions in strings.
     - `Console.WriteLine($"Hello, {fname}! {10 + 5}");`
 - **Concatenation:** `+` is used to concatenate strings
 - **Length of string:** Use the `Length` property
     - `variable.Length` will return length
-
-Splitting strings:
-- `.Split()` : splits a string into an array of strings
 
 #!csharp
 
@@ -135,13 +121,44 @@ Console.WriteLine($"The name {secondFriend} has {secondFriend.Length} letters. {
 
 #!markdown
 
-#### Changing case
+### Splitting strings
+- `.Split()`
+  - Splits a string into an array of substrings based on the spaces in the string.
+- `Split(string)`:
+  - splits based on the inputed string
+- `Split(char)`
+  - based on the char character
+- `Split(string, int)`
+  - splits into maximum number of substrings based on the inputed string
+- `Split(char, int)`
+  - splits into maximum number of substrings based on the inputed char
+
+#!csharp
+
+string str = "Hello World";
+string[] words = str.Split(); // ["Hello", "World"]
+
+string str1 = "Hello,World";
+string[] words = str.Split(','); // ["Hello", "World"]
+
+string str2 = "Hello-World";
+string[] words = str.Split("-"); // ["Hello", "World"]
+
+string str4 = "Hello,World,How,Are,You";
+string[] words = str.Split(',', 3); // ["Hello", "World", "How,Are,You"]
+
+string str5 = "Hello-World-How-Are-You";
+string[] words = str.Split("-", 3); // ["Hello", "World", "How-Are-You"]
+
+#!markdown
+
+### Changing case
 - `.ToUpper()` : converts to uppercase
 - `.ToLower()`  : converts to lowercase
 
 #!markdown
 
-#### Trimming strings:
+### Trimming strings:
 - `.Trim()` : removes whitespace in front and back
 - `.TrimStart()` : removes leading whitespace
 - `.TrimEnd()` : removes trailing whitespace
@@ -162,7 +179,7 @@ Console.WriteLine($"[{trimmedGreeting}]");
 
 #!markdown
 
-#### Replacing text in a string `.Replace("old", "new")`
+### Replacing text in a string `.Replace("old", "new")`
 This replaces the occurence of `iniWord` with `newWord`.     `variable.Replace("iniWord", "newWord")`
 
 #!csharp
@@ -345,7 +362,8 @@ display(apples != oranges)
 
 #!markdown
 
-## Loops and Conditionals
+# **Loops and Conditionals**
+---
 
 Common to every programming language are the concepts of loops or repeated execution of the same block of code and conditional execution of code. These features are typically manifest as the following statements:
 
@@ -720,15 +738,18 @@ namespace MyApplication {
     }
 }
 
+#!csharp
+
+using System;
+using System.Linq;
+using System.Collections.Generic;
+
+Console.WriteLine("Hello World!");
+
 #!markdown
 
 ---
 # **OOP in C#**
-
-#!markdown
-
-## Object Oriented Programming
-Here, we create objects that contain both data and methods.
 
 #!markdown
 
@@ -788,6 +809,49 @@ Naming things
 
 ---
 # **Exceptions**
+
+#!markdown
+
+## What are exceptions
+Exception handling lets us manage and respond to errors that happen during our program execution.
+An Exception us an error or unexpected event that occurs during the execution of program that disrupts it normal flow
+- Eg - File not found, Divide by zero error, accessing null object
+
+**We handle them:**
+- To prevent the program from crashing unexpectedly
+- Provide more meaningful error messages to users
+- Allows us to debug our program
+- Lets the program recover gracefully from errors
+
+**Basic Structure of Exception Handling**
+- `try` Block: The code that might throw an exception is enclosed in a try block.
+- `catch` Block: Code that handles the exception is placed in one or more catch blocks following the try block.
+- `finally` Block: (Optional) Code that needs to run regardless of whether an exception occurs or not is placed in a finally block.
+
+#!markdown
+
+## `try-catch` Block
+**try:**
+- Wrap code that may throw an exception within a try block.
+- If an exception occurs, the rest of the code in the try block is skipped.
+
+**catch:**
+- Follows the try block and catches exceptions thrown by the try block.
+- Can be specific to the type of exception or catch all exceptions.
+
+**finally** Block**
+- Executes after the try and catch blocks, regardless of whether an exception was thrown or not.
+- Ideal for cleaning up resources, such as closing file streams or database connections.
+
+#!csharp
+
+try {
+    // Code that may throw an exception
+} catch (ExceptionType ex) {
+    // Code to handle the exception
+} finally {
+    // Code that will always execute even if an exception is thrown
+}
 
 #!markdown
 
@@ -855,7 +919,29 @@ dotnet sln add Test1/Test1.csproj
 
 #!markdown
 
-string? means that it can be nullable, or its okay if thereis no value
+string? means that it can be nullable, or its okay if there is no value
+
+- you have control over things that originate in a try block
+- the catch bloack is to
+  - correct the error
+  - stop the program
+  - restart the program
+- Checks for null values
+
+use as many try and catch as possible
+- look for possible issues that can affect the code
+
+#!csharp
+
+WriteLine($"Check");
+Write ("Check");
+Console.WriteLine("Check");
+
+#!csharp
+
+Console.WriteLine("Check");
+Console.Write("Check");
+Console.WriteLine("Check");
 
 #!markdown
 
