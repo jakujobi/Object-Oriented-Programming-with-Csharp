@@ -782,6 +782,150 @@ Naming things
 
 #!markdown
 
+## Defining a class in a codespace
+1. Add a new class file named ClassName.cs
+2. use static System.Console
+3. namespace NameOfNameSpace
+
+This is known as a file-scoped namespace per file
+You ca only have one file-scoped namespace per file
+
+#!csharp
+
+//Old way
+
+using System;
+using static System.Console;
+
+namespace NameOfNameSpace{
+    public class NameOfClass{
+        //code
+    }
+}
+
+#!csharp
+
+//new way
+
+using System;
+namespace NameOfNameSpace;
+
+public class NameOfClass
+{
+    //code
+}
+
+#!markdown
+
+### Namespaces
+A namespace is a container that lets us bundle similar code under a specific name to avoid name clashes between different parts of a program
+
+Thay are used to organize and separate codes.
+They can contain classes, structs, interfacees, enums, and delegates
+
+#!csharp
+
+//Example of codespace
+
+namespace ProjectName{
+    class Class1{
+
+    }
+}
+
+//You can access the Class1 using ProjectName.Class1
+
+#!markdown
+
+- variables in C#
+
+#!markdown
+
+## Enums in C#
+- Its a distinct type that consists of a set of named constants
+- Used to specify a symbolic names to integral values
+
+#!csharp
+
+enum UserRole {
+  Admin,
+  User,
+  Guest
+}
+//UserRole.Admin is 0
+//UserRole.User is 1
+//UserRole.Guest is 3
+
+#!markdown
+
+## Members
+
+#!markdown
+
+## Fields
+
+#!markdown
+
+## Access Modifiers
+
+#!markdown
+
+---
+# **Encapsulation**
+
+#!markdown
+
+Encapsulation is bundling data (attributes) and methods (functions) into a class, and controlling access to the inner workings of that class from the outside world.
+
+Kind of like a wrapper that makes it hard for others to see how it it made, but allows them to use it.
+- Allows an object to hide its inner details
+- You can use access modifiers (public, private, protected, internal) to control access to the object
+- Keeps Your Secrets Safe: Just like you wouldn’t want someone to take your lunch or read your diary, encapsulation keeps important parts of your program safe from accidental changes.
+- Makes Things Simpler: You don’t need to know how your video games are made to enjoy playing them, right? Encapsulation lets us use parts of our program without worrying about the complex stuff hidden inside.
+- Easy to Update: If you decide to rearrange your locker, it doesn’t really affect your friends, as long as you can still hang out with them. Similarly, with encapsulation, a programmer can change how a part of the program works without messing up the rest.
+
+#!csharp
+
+public class BankAccount
+{
+    // Private field - Encapsulated data
+    private decimal balance;
+
+    // Constructor to initialize the balance
+    public BankAccount(decimal initialBalance)
+    {
+        balance = initialBalance;
+    }
+
+    // Public method to deposit money - Interface for outside access
+    public void Deposit(decimal amount)
+    {
+        if (amount > 0)
+        {
+            balance += amount;
+        }
+    }
+
+    // Public method to withdraw money - Interface for outside access
+    public bool Withdraw(decimal amount)
+    {
+        if (amount > 0 && balance >= amount)
+        {
+            balance -= amount;
+            return true; // Withdrawal successful
+        }
+        return false; // Withdrawal failed
+    }
+
+    // Public method to get the current balance - Read-only access
+    public decimal GetBalance()
+    {
+        return balance;
+    }
+}
+
+#!markdown
+
 ---
 # **Inheritance**
 
@@ -830,7 +974,7 @@ An Exception us an error or unexpected event that occurs during the execution of
 
 #!markdown
 
-## `try-catch` Block
+## `try-catch-finally` Block
 **try:**
 - Wrap code that may throw an exception within a try block.
 - If an exception occurs, the rest of the code in the try block is skipped.
@@ -852,6 +996,119 @@ try {
 } finally {
     // Code that will always execute even if an exception is thrown
 }
+
+#!markdown
+
+## Rethrowing Exception
+This is when we catch an exception in a `catch` block, log it, then throw it again.
+Three ways to rethrow an exception: 
+1. `throw` - throw with its original call stack, then call throw
+2. `throw new Exception()`
+3. `throw new Exception("message")`
+
+#!markdown
+
+### Rethrowing by throwing without an exception object
+Here, the original stack trace is preserved 
+
+#!csharp
+
+void beta () {
+    try {
+        // Some code that may throw an exception
+    } catch (Exception ex) {
+        Console.WriteLine($"Caught exception: {ex.Message}");
+        throw ex;
+    } finally {
+        // Code that will always execute even if an exception is thrown
+    }
+}
+
+
+try {
+    // Some code that may throw an exception
+    Gamma();
+}
+catch (Exception ex)
+{
+    // Log the exception or perform some other operation
+    Console.WriteLine(ex);
+
+    // Log the exception details
+    Console.WriteLine(ex.ToString());
+
+    //Throw the caught exception as if it happened here
+    //This will lose the original stack trace
+    throw ex;
+
+
+    // Rethrow the exception and retain original call stack
+    // This is prefferred
+    throw;
+
+    // Throw a new exception with the caught exception nested in it
+    throw new Exception(ex.Message, ex);
+}
+
+#!markdown
+
+---
+# **Collections**
+
+#!markdown
+
+## Arrays
+- Defined size
+- All elements are of same type
+
+#!csharp
+
+int[] numbers = new int[5] {1, 2, 3, 4, 5};
+
+#!markdown
+
+## ArrayList
+- Like an array but can grow and shrink
+
+#!csharp
+
+ArrayList myArrayList = new ArrayList();
+myArrayList.Add(1);
+myArrayList.Add("Two");
+
+#!markdown
+
+## List
+- Like ArrayList but it's a generic type
+- - can only hols items of the specified type
+- Can grow and shrink
+
+#!csharp
+
+List<int> myIntList = new List<int>();
+myIntList.Add(1);
+myIntList.Add(2);
+
+#!markdown
+
+## Dictionary <TKey, TValue>
+- Holds key-value pairs
+- Can look up values by their key
+- Ordered
+- Uses the **key** as the **index**
+- Doesn't allow duplicate keys, but can have duplicate values
+
+#!csharp
+
+Dictionary<string, int> myDictionary = new Dictionary<string, int>();
+myDictionary.Add("One", 1);
+myDictionary.Add("Two", 2);
+
+#!markdown
+
+## HashSet<Type>
+- Collection of unique items
+- Usef
 
 #!markdown
 
@@ -945,5 +1202,436 @@ Console.WriteLine("Check");
 
 #!markdown
 
+## Static
+If something is static, it belongs to the class.
+If not, it belongs to the object.
+If we change a static member, it will change for all objects of the class.
+
+#!markdown
+
+----
+# **Parameters**
+
+#!markdown
+
+## Passing Parameters
+
+**By Value**
+- Default way passing
+- The method gets a copy of the actual value
+- - Changes made to the parameter in the method don't affect the original value
+
+**By Reference with ```ref```**
+- in-and-out
+- The method gets a reference to the actual value
+  - Changes made to the parameter in the method affect the original value
+- We must put ```ref``` in front of the parameter 
+  - e.g ```ref int x```
+
+**By out parameter with ```out```**
+- out only
+- The method gets a reference to the actual value
+- Similar to ref, but does
+- Can't have a default value assigned in their declaration
+- Out parameters can't be left uninitialized
+- Must be set inside the method; or the compiler will give an error
+  - Changes made to the parameter in the method affect the original value
+- We must put ```ref``` in front of the parameter 
+  - e.g ```ref int x```
+
+As an in parameter
+
+#!csharp
+
+void PassByValue(int x) { x = 10; }  // Does not affect the original value
+void PassByReference(ref int x) { x = 10; }  // Affects the original value
+void PassByOutput(out int x) { x = 10; }  // Affects the original value
+
+#!csharp
+
+public void PassingParameters(
+        int w,
+        in int x,
+        ref int y,
+        out int z)
+{
+    z = 100;
+    //x++; //We can't change this because it is a read-only reference
+    y++;
+    z++;
+
+    Console.WriteLine($"In the method: w={w}, x={x}, y={y}, z={z}");
+}
+
+int a = 10; int b = 20; int c = 30; //var d = 40;
+// Before passing
+//Console.WriteLine($"Before passing: w={w}, x={x}, y={y}, z={z}");
+//PassingParameters(w, x, ref y, out z);
+// After passing
+//Console.WriteLine($"After passing: w={w}, x={x}, y={y}, z={z}");
+
+Console.WriteLine($"Before passing: a={a}, b={b}, c={c}");
+PassingParameters(a, b, ref c, out int d);
+Console.WriteLine($"After passing: a={a}, b={b}, c={c}, d = {d}");
+
+#!markdown
+
+## Combining multiple returned values using tuples
+- Each method can only return a single value that has a single type
+
+#!csharp
+
+public (string, int) GetFruit ()
+{
+    return ("apple", 42);
+}
+
+(string, int) fruit = GetFruit();
+Console.WriteLine($"FruitName is {fruit.Item1} and Number is {fruit.Item2}");
+
+#!csharp
+
+public (string Name, int Age) GetPerson()
+{
+    return (Name: "John", Age: 42);
+}
+
+(string name, int age) nameAndAge= GetPerson();
+Console.WriteLine($"Name is {nameAndAge.Item1} and age is {nameAndAge.Item2}");
+Console.WriteLine($"Name is {nameAndAge.name} and age is {nameAndAge.age}");
+
+#!markdown
+
+## Tuples
+- It's a data structure that contains a sequence of elements of different data types.
+- Can be used where you want to have a data structure to hold and object with properties, but you don't want to have to create a separate type or class
+-  tuples are very useful for a quick grouping of related data without having to create a specific class or struct
+-  You can access the elements in a tuple using Item1, Item2, Item3, etc.
+-  You can't iterate over tuples like we do with arrays or lists
+
+#!csharp
+
+var person = Tuple.Create("John", "Doe", 30);
+//person is a tuple that contains three elements of types string, string, and int.
+
+#!csharp
+
+var person = ("Name", "LastName", 0);
+person.Item1 = "John";
+person.Item2 = "Doe";
+person.Item3 = 30;
+
+string firstName = person.Item1;  // "John"
+string lastName = person.Item2;   // "Doe"
+int age = person.Item3;           // 30
+
+Console.WriteLine(person.Item1);
+Console.WriteLine(person.Item2);
+Console.WriteLine(person.Item3)
+
+#!csharp
+
+var person = (Firstname: "Name", Lastname: "Name", Age: 0);
+person.Item1 = "John";
+person.Item2 = "Doe";
+person.Item3 = 30;
+
+string firstName = person.Item1;  // "John"
+string lastName = person.Item2;   // "Doe"
+int age = person.Item3;           // 30
+
+Console.WriteLine(person.Firstname);
+Console.WriteLine(person.Lastname);
+Console.WriteLine(person.Age);
+
+#!markdown
+
+### Nested tuples
+Tuples can contain another tuple as one of its elements
+
+#!csharp
+
+var outerTuple = new Tuple<int, Tuple<string, string>>(1, new Tuple<string, string>("Hello", "World"));
+
+Console.WriteLine(outerTuple.Item1);  // Outputs: 1
+Console.WriteLine(outerTuple.Item2.Item1);  // Outputs: Hello
+Console.WriteLine(outerTuple.Item2.Item2);  // Outputs: World
+
+#!csharp
+
+var outerTuple = (1, ("Hello", "World"), "Stringent");
+
+Console.WriteLine(outerTuple.Item1);  // Outputs: 1
+Console.WriteLine(outerTuple.Item2.Item1);  // Outputs: Hello
+Console.WriteLine(outerTuple.Item2.Item2);  // Outputs: World
+
+#!csharp
+
+var outerTuple = (Number: 1, InnerTuple: (First: "Hello", Second: "World"));
+
+Console.WriteLine(outerTuple.Number);  // Outputs: 1
+Console.WriteLine(outerTuple.InnerTuple.First);  // Outputs: Hello
+Console.WriteLine(outerTuple.InnerTuple.Second);  // Outputs: World
+
+#!markdown
+
+---
+# **Properties & Indexers**
+
+#!markdown
+
+## Properties
+Property is a member of a class or struct that allows us to read, write, or compute the value of a private field.
+- Can be used like they are public data members but they are actually special methods called accessors
+- Allows us to protect our fields from being accessed directly
+
+#!csharp
+
+//Here, Name is a property.
+//The get accessor returns the value of name.
+//The set accessor sets the value of name.
+//The value keyword is the value assigned to the property
+public class Person
+{
+    private string name;  // Private field
+
+    // Property
+    public string Name
+    {
+        get { return name; }  // Get accessor
+        set { name = value; } // Set accessor
+    }
+}
+
+#!markdown
+
+## Controlling access with properties and indexers
+- Differences between a field and a property
+- fields are used to store data, properties provide a way to protect that data and add additional logic when getting or setting the values, and indexers allow an object to be indexed like an array
+
+#!markdown
+
+## Field
+- A field is a variable that is declared directly in a class or struct in C#.
+- It can be public or private, static or not, and it can be a value type or reference type.
+- It represents the data it holds
+
+#!csharp
+
+public class MyClass
+{
+    public string myField;  // This is a field
+}
+
+#!markdown
+
+## Indexer
+- this allows an object to be indexed and accessed similar to an array
+-  It's a syntactic convenience that allows you to create a class that can be accessed just like an array for one of its collections.
+
+#!csharp
+
+public class MyClass
+{
+    private int[] array = new int[10];
+
+    public int this[int index]  // This is an indexer
+    {
+        get { return array[index]; }
+        set { array[index] = value; }
+    }
+}
+
+
+MyClass myObject = new MyClass();
+myObject[0] = 42;  // Using the indexer to set a value
+int value = myObject[0];  // Using the indexer to get a value
+
+#!markdown
+
+## Defining read-only Properties
+
+#!markdown
+
+## Defining Settable Properties
+
+#!markdown
+
+### Requiring Properties to be set during instantiation
+
+#!markdown
+
+## Init-Only Properties
+
+#!markdown
+
+### Record Types
+
+#!markdown
+
+---
+# **Interface**
+
+#!csharp
+
+public class Person {
+    public string Name { get; set; }
+
+    public DateTime DateOfBirth { get; set; }
+    
+    public int Age { get; set; }
+}
+
+#!markdown
+
+## Static Methods and Overloading Operators
+A static method is a method that can be called directly from a class without creating an object instance.
+- They can only access static members of the class
+- Can't use the ```this``` keyword in a static method
+- They are 
+
+#!markdown
+
 ---
 # **End**
+
+#!markdown
+
+# Chapter 4
+
+# Ken Gamradt's Notes on Lambdas and Exceptions in Functions
+
+#!markdown
+
+## Using Lambdas in Function Implementations
+
+- **F# Overview**
+  - F# is Microsoft's strongly typed, functional-first programming language that compiles to Intermediate Language (IL) for execution by .NET.
+  - Functional programming languages, like F#, are derived from lambda calculus and emphasize computational processes based solely on function application, resembling mathematical functions more than procedural steps.
+```#C#
+onin0n0
+int make
+```
+
+- **Characteristics of Functional Programming**
+  - **Modularity**: Breaking down complex codebases into smaller, manageable pieces.
+  - **Immutability**: Ensuring that data values within functions do not change, fostering the creation of new data from existing data to minimize bugs.
+  - **Maintainability**: Resulting in cleaner and more comprehensible code, especially for those with a mathematical inclination.
+
+- **Functional Features in C#**
+  - Since C# 6, Microsoft has progressively introduced functional programming features such as tuples, pattern matching, non-null reference types, and enhancements in pattern matching and immutable objects.
+  - Expression-bodied function members were introduced in C# 6, using the `=>` symbol to signify the return value of a function.
+  - The Fibonacci sequence, starting with 0 and 1, where each subsequent number is the sum of the previous two, serves as a classic example of functional programming's approach to generating sequences.
+
+## Throwing and Catching Exceptions in Functions
+
+- **Handling Exceptions**
+  - Only handle exceptions when there is sufficient information to resolve the issue, otherwise, allow exceptions to bubble up to higher levels.
+  
+- **Types of Errors**
+  - **Usage Errors**: Result from incorrect function usage, such as passing invalid parameters, which should be corrected by the programmer.
+  - **Execution Errors**: Occur at runtime and cannot always be remedied by improved coding. These are further categorized into:
+    - **Program Errors**: Can be programmatically resolved.
+    - **System Errors**: Often beyond the control of the program, such as hardware failures or network issues.
+
+- **Commonly Thrown Exceptions**
+  - It's generally unnecessary to create new exception types for indicating usage errors, as .NET already provides many standard exceptions. When parameters in your functions are incorrect, throwing exceptions like `ArgumentNullException`, `ArgumentException`, `NotSupportedException`, or `InvalidOperationException` is advised, along with descriptive messages for developers or end-users.
+
+## Guard Clauses for Throwing Exceptions
+
+- Guard clauses are a defensive programming technique, employing static methods on exceptions to validate argument values at the beginning of functions, thereby preventing the execution of the rest of the function if the arguments are invalid.
+
+## Understanding the Call Stack
+
+- The call stack in .NET applications begins with the `Main` method, which may call other methods, forming a chain of method calls. The stack is visually represented in reverse order, starting with the initial call at the bottom and progressing upwards through each subsequent call, illustrating the path of execution and the point at which exceptions are thrown.
+
+## Rethrowing Exceptions
+
+- When logging exceptions, you might want to rethrow them. This can be done in three ways:
+  1. Using `throw` by itself to preserve the original call stack.
+  2. Using `throw ex` to rethrow the exception as if it originated from the current catch block, which is generally discouraged due to the loss of debugging information.
+  3. Wrapping the caught exception in a new exception, providing additional context in the message, and setting the original exception as the `innerException` to provide more detailed insights into the error.
+
+This structured format aims to provide a clear and concise overview of the concepts related to using lambdas and handling exceptions in functional programming, particularly within the context of C#.
+
+#!markdown
+
+# Chapter 5
+
+#!markdown
+
+## Overview of OOP Concepts
+
+- **OOP (Object-Oriented Programming)**
+  - An object in the real world can be a tangible item like a car or a person. In programming, an object often represents a real-world entity such as a product or bank account, or something more abstract.
+  - In C#, objects are defined using `class`, `record`, and `struct` keywords, which serve as the blueprint or template for creating objects.
+
+
+# Encapsulation
+- Encapsulation involves bundling the data (attributes) and actions (methods) related to an object.
+- For instance, a `BankAccount` type might include data like `Balance` and `AccountName`, along with actions such as `Deposit` and `Withdraw`.
+- It often involves controlling access to the object's internal state, preventing external modifications directly.
+
+# Composition
+- Composition describes what an object is made of, indicating a has-a relationship.
+- Example: A `Car` is composed of `Wheel`, `Seat`, and `Engine` objects.
+
+# Aggregation
+- Aggregation describes a contains-a relationship between objects, where one object is used as part of another without being owned by it.
+- Example: A `Person` can sit in a `Car` without being part of the car object itself.
+
+# Inheritance
+- Inheritance allows a class (subclass or derived class) to inherit attributes and methods from another class (base class or superclass).
+- Example: The `SqlException` class inherits from the base `Exception` class, adding specific properties related to SQL database exceptions.
+
+# Abstraction
+- Abstraction focuses on hiding the complex reality while exposing only the necessary parts.
+- It is implemented in C# using the `abstract` keyword. Abstract classes cannot be instantiated and are intended to be subclassed.
+
+# Polymorphism
+- Polymorphism allows objects to be treated as instances of their parent class rather than their actual class.
+- It enables a derived class to override inherited methods, providing custom behavior.
+
+# Defining Classes and Namespaces
+
+- To define a class in C#, create a new class file (e.g., `Person.cs`), import necessary namespaces (e.g., `System.Console`), and set the appropriate namespace (e.g., `Packt.Shared`).
+
+# Understanding Class Members
+
+## Fields
+- Fields are used to store data within a class. They can be constant, read-only, or event-driven.
+
+## Methods
+- Methods contain executable statements and can include constructors, properties, indexers, and operators to manipulate the class's data.
+
+## Access Modifiers
+- Access modifiers control the visibility and accessibility of class members, ensuring encapsulation and data protection.
+
+## Object Initializer Syntax
+- Fields can be initialized using object initializer syntax, allowing for concise and readable code.
+
+## Enums and Collections
+- Enums provide a way to define a set of named constants, while collections like `List<T>` allow storing multiple values.
+
+## Static Members
+- Static members belong to the class itself rather than any instance, allowing shared data and methods across all instances.
+
+## Constants and Read-Only Fields
+- Constant and read-only fields provide immutable data values, ensuring data integrity and reducing runtime errors.
+
+## Constructors and Method Parameters
+- Constructors initialize class objects, and methods can accept parameters to customize their behavior, supporting overloading, optional parameters, and controlled parameter passing.
+
+## Returning Multiple Values with Tuples
+- Tuples enable methods to return multiple values in a single call, simplifying the handling of complex data structures.
+
+## Properties and Indexers
+- Properties provide controlled access to class data, and indexers allow accessing elements using array-like syntax.
+
+## Init-Only Properties
+- Init-only properties ensure that values can be set at instantiation but remain immutable thereafter, promoting object integrity.
+
+## Record Types
+- Record types offer immutability and value-like behavior for objects, facilitating non-destructive mutations and enhancing code safety and clarity.
+
+This format aims to provide a structured and clear overview of the key concepts and practices related to OOP in C#.
