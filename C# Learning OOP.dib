@@ -1493,145 +1493,104 @@ A static method is a method that can be called directly from a class without cre
 #!markdown
 
 ---
-# **End**
+# **Reference and Value Types**
 
 #!markdown
 
-# Chapter 4
+There are 2 categories of memory
+### Stack Memory
+- Faster to work with
+- managed directly by CPU
+- Uses a last-in-first-out machanism like a stack
+- More likely to have data in L1 or L2 cache
+- Limited in size
 
-# Ken Gamradt's Notes on Lambdas and Exceptions in Functions
+### Heap Memory
+- Slower to work with
+- managed by the OS
+- Uses a first-in-first-out machanism like a queue
+- More likely to have data in L3 cache
 
 #!markdown
 
-## Using Lambdas in Function Implementations
+## value Type
+They include basic types such as int, float, double, and DateTimeOffset, as well as structures (struct).
+- When you create a value type, the value is stored directly in the location where the variable is allocated.
+- For local variables, this is typically on the stack, which is a region of memory that stores data in a last-in, first-out manner. This means that each value type has its own copy of the data, and operations on one do not affect another.
 
-- **F# Overview**
-  - F# is Microsoft's strongly typed, functional-first programming language that compiles to Intermediate Language (IL) for execution by .NET.
-  - Functional programming languages, like F#, are derived from lambda calculus and emphasize computational processes based solely on function application, resembling mathematical functions more than procedural steps.
-```#C#
-onin0n0
-int make
+```int number1 = 49;
+- number1 variable is a value type or struct
+- is allocated on the stack
+-uses 4 bytes of memory since it is a 32-bit integer
+
+#!markdown
+
+## Refernce Type (Class)
 ```
-
-- **Characteristics of Functional Programming**
-  - **Modularity**: Breaking down complex codebases into smaller, manageable pieces.
-  - **Immutability**: Ensuring that data values within functions do not change, fostering the creation of new data from existing data to minimize bugs.
-  - **Maintainability**: Resulting in cleaner and more comprehensible code, especially for those with a mathematical inclination.
-
-- **Functional Features in C#**
-  - Since C# 6, Microsoft has progressively introduced functional programming features such as tuples, pattern matching, non-null reference types, and enhancements in pattern matching and immutable objects.
-  - Expression-bodied function members were introduced in C# 6, using the `=>` symbol to signify the return value of a function.
-  - The Fibonacci sequence, starting with 0 and 1, where each subsequent number is the sum of the previous two, serves as a classic example of functional programming's approach to generating sequences.
-
-## Throwing and Catching Exceptions in Functions
-
-- **Handling Exceptions**
-  - Only handle exceptions when there is sufficient information to resolve the issue, otherwise, allow exceptions to bubble up to higher levels.
-  
-- **Types of Errors**
-  - **Usage Errors**: Result from incorrect function usage, such as passing invalid parameters, which should be corrected by the programmer.
-  - **Execution Errors**: Occur at runtime and cannot always be remedied by improved coding. These are further categorized into:
-    - **Program Errors**: Can be programmatically resolved.
-    - **System Errors**: Often beyond the control of the program, such as hardware failures or network issues.
-
-- **Commonly Thrown Exceptions**
-  - It's generally unnecessary to create new exception types for indicating usage errors, as .NET already provides many standard exceptions. When parameters in your functions are incorrect, throwing exceptions like `ArgumentNullException`, `ArgumentException`, `NotSupportedException`, or `InvalidOperationException` is advised, along with descriptive messages for developers or end-users.
-
-## Guard Clauses for Throwing Exceptions
-
-- Guard clauses are a defensive programming technique, employing static methods on exceptions to validate argument values at the beginning of functions, thereby preventing the execution of the rest of the function if the arguments are invalid.
-
-## Understanding the Call Stack
-
-- The call stack in .NET applications begins with the `Main` method, which may call other methods, forming a chain of method calls. The stack is visually represented in reverse order, starting with the initial call at the bottom and progressing upwards through each subsequent call, illustrating the path of execution and the point at which exceptions are thrown.
-
-## Rethrowing Exceptions
-
-- When logging exceptions, you might want to rethrow them. This can be done in three ways:
-  1. Using `throw` by itself to preserve the original call stack.
-  2. Using `throw ex` to rethrow the exception as if it originated from the current catch block, which is generally discouraged due to the loss of debugging information.
-  3. Wrapping the caught exception in a new exception, providing additional context in the message, and setting the original exception as the `innerException` to provide more detailed insights into the error.
-
-This structured format aims to provide a clear and concise overview of the concepts related to using lambdas and handling exceptions in functional programming, particularly within the context of C#.
+Person kevin = new()
+{Name = "Kevin", DateOfBirth = new (year:1988, month:9, day:23) };
+```
+- The kevin variable is a reference stack
+- 8 bytes of a 64-bit memory address(on a 64bit OS) is reserved on the stack
+- Enough bytes is reserved on the head to store instance of a Person
 
 #!markdown
 
-# Chapter 5
+## Boxing & Unboxing
+This is when a value type is moved to a
+- Process of converting a value type to the type object or to any interface type implemented by this value type.
+
+### Unboxing
+This extracts 
+
+
+- Boxing and unboxing operations have a negative impact on performance
+    - Up to 20 times slower
+- However, there might be other things that take more time like 
+
+#!csharp
+
+//Example of boxing
+int val = 123;  // Value type
+object obj = val;  // Boxing
+Console.WriteLine(obj);
+
+//Example of Unboxing
+obj = 123;  // Boxing
+val = (int)obj;  // Unboxing
+Console.WriteLine(val);
+
+int n = 3;
+object o = n; //Boxing happens implicitly
+n = (int) o; // Unboxing
 
 #!markdown
 
-## Overview of OOP Concepts
+## Equallity of types
+- We use `==` and `!=` to compare two values
+- This is different for reference types and value types
+- For value types, the values are compared
+- For reference types, the references are compared
+    - But this is problematice because it checks if they are the same object
+    - But they are not
+    - This is because they have different memory addresses
 
-- **OOP (Object-Oriented Programming)**
-  - An object in the real world can be a tangible item like a car or a person. In programming, an object often represents a real-world entity such as a product or bank account, or something more abstract.
-  - In C#, objects are defined using `class`, `record`, and `struct` keywords, which serve as the blueprint or template for creating objects.
+#!csharp
 
+int a = 4;
+int b = 4;
+int c = 5;
 
-# Encapsulation
-- Encapsulation involves bundling the data (attributes) and actions (methods) related to an object.
-- For instance, a `BankAccount` type might include data like `Balance` and `AccountName`, along with actions such as `Deposit` and `Withdraw`.
-- It often involves controlling access to the object's internal state, preventing external modifications directly.
+Console.WriteLine($"a==b:{(a == b)}");
+Console.WriteLine($"b==c:{(b == c)}");
 
-# Composition
-- Composition describes what an object is made of, indicating a has-a relationship.
-- Example: A `Car` is composed of `Wheel`, `Seat`, and `Engine` objects.
+#!csharp
 
-# Aggregation
-- Aggregation describes a contains-a relationship between objects, where one object is used as part of another without being owned by it.
-- Example: A `Person` can sit in a `Car` without being part of the car object itself.
+Person p1 = new() {Name = "Kevin", Age = 20};
+Person p2 = new() {Name = "Kevin", Age = 20};
+Console.WriteLine(p1 == p2); // False
 
-# Inheritance
-- Inheritance allows a class (subclass or derived class) to inherit attributes and methods from another class (base class or superclass).
-- Example: The `SqlException` class inherits from the base `Exception` class, adding specific properties related to SQL database exceptions.
+#!markdown
 
-# Abstraction
-- Abstraction focuses on hiding the complex reality while exposing only the necessary parts.
-- It is implemented in C# using the `abstract` keyword. Abstract classes cannot be instantiated and are intended to be subclassed.
-
-# Polymorphism
-- Polymorphism allows objects to be treated as instances of their parent class rather than their actual class.
-- It enables a derived class to override inherited methods, providing custom behavior.
-
-# Defining Classes and Namespaces
-
-- To define a class in C#, create a new class file (e.g., `Person.cs`), import necessary namespaces (e.g., `System.Console`), and set the appropriate namespace (e.g., `Packt.Shared`).
-
-# Understanding Class Members
-
-## Fields
-- Fields are used to store data within a class. They can be constant, read-only, or event-driven.
-
-## Methods
-- Methods contain executable statements and can include constructors, properties, indexers, and operators to manipulate the class's data.
-
-## Access Modifiers
-- Access modifiers control the visibility and accessibility of class members, ensuring encapsulation and data protection.
-
-## Object Initializer Syntax
-- Fields can be initialized using object initializer syntax, allowing for concise and readable code.
-
-## Enums and Collections
-- Enums provide a way to define a set of named constants, while collections like `List<T>` allow storing multiple values.
-
-## Static Members
-- Static members belong to the class itself rather than any instance, allowing shared data and methods across all instances.
-
-## Constants and Read-Only Fields
-- Constant and read-only fields provide immutable data values, ensuring data integrity and reducing runtime errors.
-
-## Constructors and Method Parameters
-- Constructors initialize class objects, and methods can accept parameters to customize their behavior, supporting overloading, optional parameters, and controlled parameter passing.
-
-## Returning Multiple Values with Tuples
-- Tuples enable methods to return multiple values in a single call, simplifying the handling of complex data structures.
-
-## Properties and Indexers
-- Properties provide controlled access to class data, and indexers allow accessing elements using array-like syntax.
-
-## Init-Only Properties
-- Init-only properties ensure that values can be set at instantiation but remain immutable thereafter, promoting object integrity.
-
-## Record Types
-- Record types offer immutability and value-like behavior for objects, facilitating non-destructive mutations and enhancing code safety and clarity.
-
-This format aims to provide a structured and clear overview of the key concepts and practices related to OOP in C#.
+# Struct Types
+- 
