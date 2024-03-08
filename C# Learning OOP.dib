@@ -1518,14 +1518,14 @@ They include basic types such as int, float, double, and DateTimeOffset, as well
 - When you create a value type, the value is stored directly in the location where the variable is allocated.
 - For local variables, this is typically on the stack, which is a region of memory that stores data in a last-in, first-out manner. This means that each value type has its own copy of the data, and operations on one do not affect another.
 
-```int number1 = 49;
+```int number1 = 49;```
 - number1 variable is a value type or struct
 - is allocated on the stack
 -uses 4 bytes of memory since it is a 32-bit integer
 
 #!markdown
 
-## Refernce Type (Class)
+## Reference Type (Class)
 ```
 Person kevin = new()
 {Name = "Kevin", DateOfBirth = new (year:1988, month:9, day:23) };
@@ -1590,7 +1590,16 @@ Person p1 = new() {Name = "Kevin", Age = 20};
 Person p2 = new() {Name = "Kevin", Age = 20};
 Console.WriteLine(p1 == p2); // False
 
+#!csharp
+
+Console.WriteLine(a == c); // False
+
 #!markdown
 
 # Struct Types
 - 
+
+#!markdown
+
+---
+# **Polymorphism**
