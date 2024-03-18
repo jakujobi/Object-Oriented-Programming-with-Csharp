@@ -5,8 +5,7 @@
 #!markdown
 
 ---
-# **Basics of C#**
-Printing, variables, operators, data types, strings, comments
+# **Basics of C#** - Printing, variables, operators, data types, strings, comments
 
 #!markdown
 
@@ -110,6 +109,7 @@ Use `$` to use multiple variables and expressions in strings.
 
 #!csharp
 
+string aFriend = "Stormy";
 Console.WriteLine("Hello " + aFriend);
 
 string firstFriend = "Maria";
@@ -362,16 +362,8 @@ display(apples != oranges)
 
 #!markdown
 
-# **Loops and Conditionals**
 ---
-
-Common to every programming language are the concepts of loops or repeated execution of the same block of code and conditional execution of code. These features are typically manifest as the following statements:
-
-- for
-- while
-- do
-- if
-- switch or case
+# **Loops and Conditionals**
 
 #!markdown
 
@@ -782,7 +774,11 @@ Naming things
 
 #!markdown
 
-## Defining a class in a codespace
+---
+# **Namespace**
+
+#!markdown
+
 1. Add a new class file named ClassName.cs
 2. use static System.Console
 3. namespace NameOfNameSpace
@@ -841,7 +837,8 @@ namespace ProjectName{
 
 #!markdown
 
-## Enums in C#
+---
+# **Enumerators**
 - Its a distinct type that consists of a set of named constants
 - Used to specify a symbolic names to integral values
 
@@ -858,15 +855,162 @@ enum UserRole {
 
 #!markdown
 
+---
+# **Types, Variables, Fields, Operators**
+
+#!markdown
+
+## Verbs = Methods
+
+- They are action words
+- such as jump, marry, fly
+
+## Nouns = Types, Variables, Fields, Operators
+
+- Types: Categories like Animal and Car
+- Fields or Properties: Parts of the noun
+
+#!markdown
+
+## Types
+
+These are categories like Animal, Car
+
+- Every type can be a class, struct, enum, interface or delegate
+- String is a class
+- int is a struct
+
+### Dynamic types
+
+- Can store any type of data, even objects.
+- Flexibility comes at cost of performance
+- Can’t be checked during build time, only during runtime
+- Useful when working alongside non-.NET systems.
+
+```csharp
+dynamic FullName = "Jackson Onyebuchi";
+```
+
+### Var
+
+- declares local variables
+
+#!markdown
+
 ## Members
 
 #!markdown
 
 ## Fields
+Variable that is directly declared in a class or struct and belong to it.
+
+- Can be read or written to.
+- An example is the age or height
+- Usually private, avoid making it public
+    - This is discouraged coz it violates encapsulation principle.
+- Can be accessed through methods, properties, or constructors in the class
+
+```csharp
+private int age; //This is a field
+```
+
+#!markdown
+
+## Properties
+
+Member of a class or struct that allows us to read, write or compute the value of a private field
+
+- Can be used as public data members
+- Also called accessors
+- Allows data to be accessed easily and safely
+- Can’t have the same name as the field, but can use title-case version of the field name
+
+```csharp
+private int age; //The filed
+public int Age{
+    get{return age;}
+    set{age = value;}
+}
+```
+
+### Auto-implemented properties
+
+You can have a property without a field
+
+- These create a private anonymous backing field that can only be accessed by the property’s `get` and `set` accessors.
+
+```csharp
+public int age {get; set;}
+```
+
+#!markdown
+
+## Variable
+
+Storage location with a type and name.
+
+- Can be of built-in or user-defined types
+    - e.g int, float, bool, void
+- Data is temporarily stored in variables which are store in memory
+- Data in memory is lost when the program ends
+
+```csharp
+int number = 10;
+string name = "Jack";
+```
 
 #!markdown
 
 ## Access Modifiers
+
+#!markdown
+
+### Public
+They can be accessed from anywhere they are referenced
+```csharp
+public int age;
+public class Person{}
+```
+### Private
+- Can only be accessed within the class or struct in which they are declared
+- They are the default access modifier
+```csharp
+private int age;
+private void CalculateBirthDate(){}
+```
+### Protected
+- Can only be accessed within the class or struct in which they are declared and in derived classes
+```csharp
+protected int age;
+protected void CalculateBirthDate(){}
+```
+### Internal
+- Can be accessed from the same assembly
+- Can't be assessed from another assembly
+```csharp
+internal int age;
+internal void CalculateBirthDate(){}
+```
+
+### Protected Internal
+- Can be accessed from the same assembly and in derived classes
+```csharp
+protected internal int age;
+protected internal void CalculateBirthDate(){}
+```
+
+### Private Protected
+- Can only be accessed within the class or struct in which they are declared and in derived classes in the same assembly
+```csharp
+private protected int age;
+private protected void CalculateBirthDate(){}
+```
+
+#!csharp
+
+var staffName = "John";
+var Age = 25;
+Console.WriteLine(format:"{0} was born {1} years ago.", arg0:staffName, arg1:Age);
 
 #!markdown
 
@@ -931,6 +1075,37 @@ public class BankAccount
 
 #!markdown
 
+Inheritance is a way of creating more specific classes based on general ones.
+- It allows us to define a class in terms of another class, which makes it easier to create and maintain an application.
+
+#!csharp
+
+public class Animal
+{
+    public string Name { get; set; }
+    public int Age { get; set; }
+
+    public void Eat()
+    {
+        Console.WriteLine("The animal eats.");
+    }
+
+    public void Sleep()
+    {
+        Console.WriteLine("The animal sleeps.");
+    }
+}
+
+public class Dog : Animal  // Dog is a derived class from the Animal base class
+{
+    public void Bark()
+    {
+        Console.WriteLine("The dog barks.");
+    }
+}
+
+#!markdown
+
 ---
 # **Polymorphism**
 
@@ -947,21 +1122,16 @@ public class BankAccount
 #!markdown
 
 ---
-# **Enums**
-
-#!markdown
-
----
-# **Exceptions**
+# **Exceptions** - Try, Catch, Throw, Finally
 
 #!markdown
 
 ## What are exceptions
 Exception handling lets us manage and respond to errors that happen during our program execution.
-An Exception us an error or unexpected event that occurs during the execution of program that disrupts it normal flow
+- An Exception us an error or unexpected event that occurs during the execution of program that disrupts it normal flow
 - Eg - File not found, Divide by zero error, accessing null object
 
-**We handle them:**
+**Why we handle them:**
 - To prevent the program from crashing unexpectedly
 - Provide more meaningful error messages to users
 - Allows us to debug our program
@@ -999,7 +1169,7 @@ try {
 
 #!markdown
 
-## Rethrowing Exception
+## Throw Exception - ```throw ex;```
 This is when we catch an exception in a `catch` block, log it, then throw it again.
 Three ways to rethrow an exception: 
 1. `throw` - throw with its original call stack, then call throw
@@ -1053,7 +1223,7 @@ catch (Exception ex)
 #!markdown
 
 ---
-# **Collections**
+# **Collections** - Arrays, ArrayList, List, Dictionary, Hashset
 
 #!markdown
 
@@ -1118,11 +1288,7 @@ myDictionary.Add("Two", 2);
 #!markdown
 
 ---
-# **Classes Notes**
-
-#!markdown
-
-## Creating a project
+# **Creating a project**
 
 #!markdown
 
@@ -1209,26 +1375,143 @@ If we change a static member, it will change for all objects of the class.
 
 #!markdown
 
+---
+# **Best Practices**
+
+#!markdown
+
+## Name Conventions
+
+### **_camelCase**
+
+- Private filed instances
+
+```csharp
+private int _myField;
+```
+
+### **camelCase**:
+
+- local variables
+- Method arguments
+
+```csharp
+int myLocalVariable = 10;
+```
+
+```csharp
+public void CalculateAge (int dateOfBirth){
+}
+```
+
+### **TitleCase / PascalCase:**
+
+- Class names
+- Types
+- Non-private fields
+- Methods
+- Other Members
+- Properties
+
+```csharp
+public class SuperHero{
+    public void SuperPower() {}
+}
+```
+
+```csharp
+public int MyProperty { get; set; }
+```
+
+### UPPER_CASE_SCORES
+
+- Constants
+
+```csharp
+public const int MY_CONSTANT = 10;
+```
+
+### INameInterface
+
+- Interfaces
+- prefix interface names with an “I”
+
+```csharp
+public interface IMyInterface {}
+```
+
+#!markdown
+
+## Other best Practices
+
+1. **Use Properties Instead of Public Variables**:
+    - Instead of using public variables, use properties to encapsulate them.
+2. Use `var` for declaring local variables
+3. Avoid using Magic numbers
+    - Instead of using numbers directly in our code, use constants or enums to give them meaningful names
+4. **Use Meaningful Names**: All names (variables, methods, classes, etc.) should be meaningful and describe what they do.
+5. **Follow SOLID Principles**: SOLID is an acronym for five principles that help manage dependencies in your code: Single Responsibility, Open-Closed, Liskov Substitution, Interface Segregation, and Dependency Inversion.
+6. **Exception Handling**: Use try-catch blocks to handle exceptions and provide meaningful error messages.
+7. **Use `using` Statements**: When working with types that implement `IDisposable`, use a `using` statement to ensure that the object's `Dispose` method is called when it is no longer needed.
+8. **Comment Your Code**: Use comments to explain complex code logic.
+9. **Consistent Indentation**: Use consistent indentation to make your code more readable.
+10. **Avoid Deep Nesting**: Too many levels of indentation can make code harder to read and understand.
+
+#!markdown
+
 ----
 # **Parameters**
 
 #!markdown
 
-## Passing Parameters
+## How Parameters can be passed
 
-**By Value**
+### **By Value**
 - Default way passing
 - The method gets a copy of the actual value
 - - Changes made to the parameter in the method don't affect the original value
 
-**By Reference with ```ref```**
+#!csharp
+
+void ChangeValue(int x) { x = 10; }  // Does not affect the original value
+void PassByValue(int x) { x = 10; }  // Does not affect the original value
+
+#!markdown
+
+### **By Reference with ```ref```**
 - in-and-out
 - The method gets a reference to the actual value
-  - Changes made to the parameter in the method affect the original value
+- Changes made to the parameter in the method affect the original value
 - We must put ```ref``` in front of the parameter 
   - e.g ```ref int x```
 
-**By out parameter with ```out```**
+#!csharp
+
+void ChangeValue(ref int x) { x = 10; }  // Changes the original value
+int a = 5;
+ChangeValue(ref a);  // Using 'ref'
+Console.WriteLine(a);  // Output: 10
+
+void PassByReference(ref int x) { x = 10; }  // Affects the original value
+
+#!markdown
+
+### **Pass by ```in```- read only**
+- References the value, but doesn't allow changes to the value
+- Compile shows error if changes are being made to it
+- It's useful when passing large read-only structures for performance reasons.
+
+#!csharp
+
+void DoSomething(in int x) { /* can't modify x here */ }
+int d = 10;
+Console.WriteLine(d);  // Output: 10
+
+DoSomething(in d);  // Using 'in'
+
+#!markdown
+
+### **Out parameter with ```out```**
 - out only
 - The method gets a reference to the actual value
 - Similar to ref, but does
@@ -1236,15 +1519,15 @@ If we change a static member, it will change for all objects of the class.
 - Out parameters can't be left uninitialized
 - Must be set inside the method; or the compiler will give an error
   - Changes made to the parameter in the method affect the original value
-- We must put ```ref``` in front of the parameter 
-  - e.g ```ref int x```
-
-As an in parameter
 
 #!csharp
 
-void PassByValue(int x) { x = 10; }  // Does not affect the original value
-void PassByReference(ref int x) { x = 10; }  // Affects the original value
+void GetValues(out int x, out int y) { x = 10; y = 20; }  // Outputs two values
+int b, c;
+GetValues(out b, out c);  // Using 'out'
+Console.WriteLine(b);  // Output: 10
+Console.WriteLine(c);  // Output: 20
+
 void PassByOutput(out int x) { x = 10; }  // Affects the original value
 
 #!csharp
@@ -1281,18 +1564,17 @@ Console.WriteLine($"After passing: a={a}, b={b}, c={c}, d = {d}");
 
 #!csharp
 
-public (string, int) GetFruit ()
-{
+public (string, int) GetFruit (){
     return ("apple", 42);
 }
 
 (string, int) fruit = GetFruit();
+
 Console.WriteLine($"FruitName is {fruit.Item1} and Number is {fruit.Item2}");
 
 #!csharp
 
-public (string Name, int Age) GetPerson()
-{
+public (string Name, int Age) GetPerson(){
     return (Name: "John", Age: 42);
 }
 
@@ -1449,11 +1731,46 @@ int value = myObject[0];  // Using the indexer to get a value
 
 #!markdown
 
-## Defining read-only Properties
+### Defining read-only Properties
+- Property that allows us to get the valeu, but not set it
+- Useful when you want to expose a property but not let it be modified externally
+
+#!csharp
+
+public string Name {
+    get { return name; }
+}
+
+public string ToString() {
+    get {
+        return $"Name: {name}"; 
+    }
+}
+
+#!csharp
+
+public class Cheese
+{
+    private int _age;
+    public Cheese(int value){
+        _age = value;
+    }
+
+    public int Age {
+        get{
+            return _age;
+        }
+    }
+}
 
 #!markdown
 
-## Defining Settable Properties
+### Defining Settable Properties
+- Allows us to get and set a value
+
+#!csharp
+
+public string Name { get; set; }
 
 #!markdown
 
@@ -1596,7 +1913,8 @@ Console.WriteLine(a == c); // False
 
 #!markdown
 
-# Struct Types
+---
+# **Struct Types**
 - 
 
 #!markdown
