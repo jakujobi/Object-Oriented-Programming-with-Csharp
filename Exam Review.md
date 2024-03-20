@@ -39,3 +39,21 @@ Check the call stack example and how it keeps track of the order in which the me
 - Way to track the order of method invokation
 
 Know how we used in terfaces in assignment 2
+
+Understand nullable data
+
+Virtual is applied to a base class to allow descendants to make modification
+
+Override allows to add additional type to it
+
+Methods that are operators
+
+- TypeOf()
+- Operator oveloading explain)
+- E.g the Bob+Sally marriage
+- E.g Bob*Sally
+- Operator and token
+
+Primitove type to User defined type
+
+Implicit versus explicit
